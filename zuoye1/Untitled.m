@@ -1,13 +1,13 @@
-close all;
+ï»¿close all;
 clear all;
 clc;
 I=imread('1.jpg');
-I=im2double(I);                       %ÊÇ½«ÊäÈëÍ¼Ïñ±äÎª¸¡µãÍ¼Ïñ
+I=im2double(I);                       %æ˜¯å°†è¾“å…¥å›¾åƒå˜ä¸ºæµ®ç‚¹å›¾åƒ
 [M,N,~]=size(I);
 sig1=10;
 H1=hpfilter('gaussian',M,N,sig1);
 J1=(fft2(I,size(H1,1),size(H1,2)));
-K1=J1.*H1;                            %µÍÍ¨ÂË²¨
+K1=J1.*H1;                            %ä½é€šæ»¤æ³¢
 L1=real(ifft2((K1)));
 figure;imshow(L1);
 % PQ=paddedsize(size(I));
@@ -21,11 +21,11 @@ figure;imshow(L1);
 sig2=10;
 H2=lpfilter('gaussian',M,N,sig2);
 J2=(fft2(I,size(H2,1),size(H2,2)));
-K2=J2.*H2;                              %¸ßÍ¨ÂË²¨
+K2=J2.*H2;                              %é«˜é€šæ»¤æ³¢
 L2=real(ifft2((K2)));
 figure;imshow(L2);
-ditong=imcrop();                        %¼ô²ÃÍ¼Æ¬
+ditong=imcrop();                        %å‰ªè£å›¾ç‰‡
 figure;imshow(ditong);
-g=imadjust(ditong,[],[],0.4);           %¶ÔÍ¼Æ¬½øĞĞgammaĞ£Õı
+g=imadjust(ditong,[],[],0.4);           %å¯¹å›¾ç‰‡è¿›è¡Œgammaæ ¡æ­£
 figure;imshow(g);
 imwrite(g,'2.jpg');
